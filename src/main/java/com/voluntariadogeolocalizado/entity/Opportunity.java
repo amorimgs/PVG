@@ -9,108 +9,118 @@ import java.util.List;
 @Entity
 @Table(name = "opportunities")
 public class Opportunity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String description;
-    private String location;
-    private LocalDateTime eventDate;
-    private LocalTime duration;
-    private String requirements;
-    private String category;
-    private LocalDateTime createdDate;
 
-    // private Ong ong;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String title;
+  private String description;
+  private String location;
+  private LocalDateTime eventDate;
+  private LocalTime duration;
+  private String requirements;
+  private String category;
+  private LocalDateTime createdDate;
 
-    // private List<Registration> registrationList;
+  @ManyToOne
+  @JoinColumn(name = "ong_id")
+  private Ong ong;
 
-    public Opportunity() {
-    }
+  @ManyToMany
+  @JoinTable(
+      name = "opportunities_registrations",
+      joinColumns = @JoinColumn(name = "opportunity_id"),
+      inverseJoinColumns = @JoinColumn(name = "registration_id")
 
-    public Long getId() {
-        return id;
-    }
+  )
+  private List<Registration> registrations;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Opportunity() {
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getLocation() {
-        return location;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public LocalDateTime getEventDate() {
-        return eventDate;
-    }
+  public String getLocation() {
+    return location;
+  }
 
-    public void setEventDate(LocalDateTime eventDate) {
-        this.eventDate = eventDate;
-    }
+  public void setLocation(String location) {
+    this.location = location;
+  }
 
-    public LocalTime getDuration() {
-        return duration;
-    }
+  public LocalDateTime getEventDate() {
+    return eventDate;
+  }
 
-    public void setDuration(LocalTime duration) {
-        this.duration = duration;
-    }
+  public void setEventDate(LocalDateTime eventDate) {
+    this.eventDate = eventDate;
+  }
 
-    public String getRequirements() {
-        return requirements;
-    }
+  public LocalTime getDuration() {
+    return duration;
+  }
 
-    public void setRequirements(String requirements) {
-        this.requirements = requirements;
-    }
+  public void setDuration(LocalTime duration) {
+    this.duration = duration;
+  }
 
-    public String getCategory() {
-        return category;
-    }
+  public String getRequirements() {
+    return requirements;
+  }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+  public void setRequirements(String requirements) {
+    this.requirements = requirements;
+  }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
+  public String getCategory() {
+    return category;
+  }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
+  public void setCategory(String category) {
+    this.category = category;
+  }
 
-    // public Ong getOng() {
-    //     return ong;
-    // }
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
+  }
 
-    // public void setOng(Ong ong) {
-     //   this.ong = ong;
-    //}
+  public void setCreatedDate(LocalDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
 
-    // public List<Registration> getRegistrationList() {
-    //    return registrationList;
-    // }
+  public Ong getOng() {
+    return ong;
+  }
+
+  public void setOng(Ong ong) {
+    this.ong = ong;
+  }
+
+  // public List<Registration> getRegistrationList() {
+  //    return registrationList;
+  // }
 
 //    public void setRegistrationList(List<Registration> registrationList) {
 //        this.registrationList = registrationList;

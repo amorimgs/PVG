@@ -3,71 +3,84 @@ package com.voluntariadogeolocalizado.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "ongs")
 public class Ong {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
-    private String email;
-    private String password;
-    private String description;
+  private String name;
+  private String email;
+  private String password;
+  private String description;
 
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
+  @Column(name = "created_date")
+  private LocalDateTime createdDate;
 
-    public Ong() {
-    }
+  @OneToMany(mappedBy = "ong")
+  private List<Opportunity> opportunities;
 
-    public Long getId() {
-        return id;
-    }
+  public Ong() {
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public List<Opportunity> getOpportunities() {
+    return opportunities;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setOpportunities(
+      List<Opportunity> opportunities) {
+    this.opportunities = opportunities;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(LocalDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
 }

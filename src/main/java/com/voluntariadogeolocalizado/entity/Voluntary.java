@@ -4,68 +4,82 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 
 @Entity
 @Table(name = "volunteers")
 public class Voluntary {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
-    private String password;
-    private LocalDate birthday;
-    private LocalDateTime createdDate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
+  private String email;
+  private String password;
+  private LocalDate birthday;
+  private LocalDateTime createdDate;
 
-    public Voluntary() {
-    }
+  @OneToMany(mappedBy = "voluntary")
+  private List<Registration> registrations;
 
-    public Long getId() {
-        return id;
-    }
+  public Voluntary() {
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
+  public LocalDate getBirthday() {
+    return birthday;
+  }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
+  public void setBirthday(LocalDate birthday) {
+    this.birthday = birthday;
+  }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(LocalDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  public List<Registration> getRegistrations() {
+    return registrations;
+  }
+
+  public void setRegistrations(
+      List<Registration> registrations) {
+    this.registrations = registrations;
+  }
 }
