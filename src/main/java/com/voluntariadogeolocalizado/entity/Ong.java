@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "ongs")
@@ -18,13 +19,20 @@ public class Ong {
   private String password;
   private String description;
 
-  @Column(name = "created_date")
+  @CreatedDate
   private LocalDateTime createdDate;
 
-  @OneToMany(mappedBy = "ong")
+  @OneToMany(mappedBy = "ong", cascade = CascadeType.REMOVE)
   private List<Opportunity> opportunities;
 
   public Ong() {
+  }
+
+  public Ong(String name, String email, String password, String description) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.description = description;
   }
 
   public List<Opportunity> getOpportunities() {

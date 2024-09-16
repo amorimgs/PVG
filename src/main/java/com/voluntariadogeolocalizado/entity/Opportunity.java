@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "opportunities")
@@ -20,19 +21,14 @@ public class Opportunity {
   private LocalTime duration;
   private String requirements;
   private String category;
+  @CreatedDate
   private LocalDateTime createdDate;
 
   @ManyToOne
   @JoinColumn(name = "ong_id")
   private Ong ong;
 
-  @ManyToMany
-  @JoinTable(
-      name = "opportunities_registrations",
-      joinColumns = @JoinColumn(name = "opportunity_id"),
-      inverseJoinColumns = @JoinColumn(name = "registration_id")
-
-  )
+  @OneToMany(mappedBy = "opportunity", cascade = CascadeType.REMOVE)
   private List<Registration> registrations;
 
   public Opportunity() {
