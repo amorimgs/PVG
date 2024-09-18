@@ -20,7 +20,7 @@ public class Voluntary {
   private LocalDate birthday;
   private LocalDateTime createdDate;
 
-  @OneToMany(mappedBy = "voluntary")
+  @OneToMany(mappedBy = "voluntary", cascade = CascadeType.REMOVE)
   private List<Registration> registrations;
 
   public Voluntary() {
