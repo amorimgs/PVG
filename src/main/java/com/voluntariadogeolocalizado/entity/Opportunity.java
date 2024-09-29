@@ -18,7 +18,7 @@ public class Opportunity {
   private String description;
   private String location;
   private LocalDateTime eventDate;
-  private LocalTime duration;
+  private String duration;
   private String requirements;
   private String category;
   @CreatedDate
@@ -28,7 +28,7 @@ public class Opportunity {
   @JoinColumn(name = "ong_id")
   private Ong ong;
 
-  @OneToMany(mappedBy = "opportunity", cascade = CascadeType.REMOVE)
+  @OneToMany(mappedBy = "opportunity", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
   private List<Registration> registrations;
 
   public Opportunity() {
@@ -74,11 +74,11 @@ public class Opportunity {
     this.eventDate = eventDate;
   }
 
-  public LocalTime getDuration() {
+  public String getDuration() {
     return duration;
   }
 
-  public void setDuration(LocalTime duration) {
+  public void setDuration(String duration) {
     this.duration = duration;
   }
 
@@ -114,11 +114,12 @@ public class Opportunity {
     this.ong = ong;
   }
 
-  // public List<Registration> getRegistrationList() {
-  //    return registrationList;
-  // }
+  public List<Registration> getRegistrations() {
+    return registrations;
+  }
 
-//    public void setRegistrationList(List<Registration> registrationList) {
-//        this.registrationList = registrationList;
-//    }
+  public void setRegistrations(
+      List<Registration> registrations) {
+    this.registrations = registrations;
+  }
 }
